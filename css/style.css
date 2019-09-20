@@ -223,7 +223,7 @@ ul {
   position: absolute;
   width: 50px;
   height: 50px;
-  left: 0;
+  left: 70;
   top: 50px;
   background: #fff;
   z-index: 998;
@@ -323,7 +323,7 @@ ul {
 
 .mainmenu.active {
   opacity: 1;
-  left: 0;
+  left: 70;
 }
 
 .mainmenu.active .menu-list li a {
@@ -420,6 +420,8 @@ ul {
   color: #fff;
   font-size: 80px;
   font-weight: 900;
+  padding-bottom: 100px;
+  margin-top: -150px;
 }
 
 .intro-inner .intro-content h2 {
@@ -508,7 +510,7 @@ ul {
 }
 
 .service-item {
-  text-align: center;
+  text-align: left;
   background: #fff;
   padding: 30px;
   box-shadow: 6px 12px 20px 0px rgba(107, 107, 107, 0.15);
@@ -531,7 +533,7 @@ ul {
 /* ===================================
   06. Resumes Section
 ====================================== */
-.resumes {
+.resumes, .positive, .danger {
   list-style: none;
   margin-left: 5px;
   padding: 0;
@@ -540,7 +542,7 @@ ul {
 .resume-item {
   padding-left: 25px;
   border-left: 1px solid #ddd;
-  padding-bottom: 50px;
+  padding-bottom: 25px;
 }
 
 .resume-item:last-child {
@@ -569,6 +571,14 @@ ul {
   border-radius: 20px;
   border: 5px solid #fff;
   box-shadow: 0 0 20px rgba(101, 101, 101, 0.18);
+}
+
+.positive > .resume-item h3:after {
+  background: #2ce629;
+}
+
+.danger > .resume-item h3:after {
+  background: #e62929;
 }
 
 .resume-item h5 {
@@ -1099,4 +1109,17 @@ ul {
   .intro-content h2 {
     font-size: 20px !important;
   }
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  z-index: 100;
+}
+
+.logo > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
