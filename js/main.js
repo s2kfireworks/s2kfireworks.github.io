@@ -81,7 +81,7 @@ $(window).on('load', function() {
 	/*------------------
 		Service Carousel
 	--------------------*/
-	$('#service-carousel').owlCarousel({
+	/*$('#service-carousel').owlCarousel({
 		dots: false,
 		nav: true,
 		margin:30,
@@ -98,7 +98,7 @@ $(window).on('load', function() {
 				items:3,
 			}
 		}
-	});
+	});*/
 
 
 	/*------------------
