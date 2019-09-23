@@ -1114,7 +1114,7 @@ ul {
 .logo {
   width: 100px;
   height: 100px;
-  position: fixed;
+  position: absolute;
   z-index: 100;
   right: 50px;
 }
