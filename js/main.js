@@ -123,7 +123,7 @@ $(window).on('load', function() {
 	    open: function() {
 	      $('#video_player')[0].src = './videos/' + this.currItem.el.context.attributes.id.nodeValue + ".mp4";
 	      $("#video_player")[0].play();
-              $("#video_player")[0].prop('muted', true);
+              // $("#video_player")[0].attr('muted', true);
 	    },
 	    close: function() {
 	      // Will fire when popup is closed
