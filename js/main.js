@@ -116,23 +116,29 @@ $(window).on('load', function() {
 	});
 
 
+	$('.open-popup-link').magnificPopup({
+	  type:'inline',
+	  midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+	  callbacks: {
+	    open: function() {
+	      $('#video_player')[0].src = './videos/' + this.currItem.el.context.attributes.id.nodeValue + ".mp4";
+	      $("#video_player")[0].play();
+	    },
+	    close: function() {
+	      // Will fire when popup is closed
+	    }
+	    // e.t.c.
+	  }
+	});
+
 	/*------------------
 		Magnific Popup
 	--------------------*/
-	$('.work-popup').magnificPopup({
-		type:'image',
-		gallery:{enabled:true}
-	});
+	// $('.work-popup').magnificPopup({
+	// 	type:'image',
+	// 	gallery:{enabled:true}
+	// });
 
-	$('.popup-youtube').magnificPopup({
-		disableOn: 700,
-		type: 'iframe',
-		mainClass: 'mfp-fade',
-		removalDelay: 160,
-		preloader: false,
-
-		fixedContentPos: false
-	});
 
 	/*------------------
 		ScrollUp

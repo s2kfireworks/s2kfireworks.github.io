@@ -1148,3 +1148,12 @@ ul {
   width: 32px;
   height: 32px;
 }
+
+.work-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: 450;
+  max-width: 450;
+  margin: 20px auto;
+}
