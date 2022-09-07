@@ -82,6 +82,7 @@ $(window).on('load', function() {
 		Service Carousel
 	--------------------*/
 	/*$('#service-carousel').owlCarousel({
+		center: true,
 		dots: false,
 		nav: true,
 		margin:30,
