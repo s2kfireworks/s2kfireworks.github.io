@@ -82,7 +82,6 @@ $(window).on('load', function() {
 		Service Carousel
 	--------------------*/
 	/*$('#service-carousel').owlCarousel({
-		center: true,
 		dots: false,
 		nav: true,
 		margin:30,
@@ -106,6 +105,7 @@ $(window).on('load', function() {
 		Review Carousel
 	--------------------*/
 	$('.review-carousel').owlCarousel({
+		center: true,
 		dots: false,
 		nav: true,
 		loop: true,
@@ -207,5 +207,39 @@ $(window).on('load', function() {
 		});
 		return false;
 	});
+
+	$('#order_form').on('click','span.minus',function(e){
+		var $input=$(this).parent().find('input');
+		var count=parseInt($input.val())-1;
+		count=count<0?0:count;
+		$input.val(count);
+		$input.change();
+		var unitPrice = $(this).parent().parent().parent().parent().find('#unit_price').text();
+		$(this).parent().parent().parent().parent().find('#item_total').text(eval($input.val()*unitPrice));
+		updateTotal();
+		return!1;
+	});
+	$('#order_form').on('click','span.plus',function(e){
+		var $input=$(this).parent().find('input');
+		$input.val(parseInt($input.val())+1);
+		$input.change();
+		var unitPrice = $(this).parent().parent().parent().parent().find('#unit_price').text();
+		$(this).parent().parent().parent().parent().find('#item_total').text(eval($input.val()*unitPrice));
+		updateTotal();
+		return!1;
+	});
+
+	function updateTotal() {
+		var orderTotal = 0;
+		$( ".item-total" ).each(function( index ) {
+		  console.log( index + ": " + $( this ).text() );
+		  var itemTotal = $( this ).text();
+		  if(itemTotal != '' && !isNaN(itemTotal)) {
+		  	orderTotal = orderTotal + eval(itemTotal);
+		  }
+		});
+
+		$( "#orderTotal" ).text(orderTotal);
+	}
 
 })(jQuery);
