@@ -1270,3 +1270,21 @@ th {
     vertical-align: middle;
     text-align: center;
 }
+
+
+.contact {
+    height: 30px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contact-label {
+  font-weight: 700;
+}
+
+.error {
+      border:1px solid red;
+  }
