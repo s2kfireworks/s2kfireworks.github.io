@@ -161,10 +161,53 @@ THE SOFTWARE.*/
                 $( ".qty_id" ).each(function( index ) {
                   if ($( this ).val() != '' && $( this ).val() > 0) {
                     hasAnyItem = true;
-                    return hasAnyItem;
-                  }                  
+                    return;
+                  }
                 });
-                return hasAnyItem;
+
+                if (!hasAnyItem) {
+                    alert('You must order atleast one product');
+                    return hasAnyItem;
+                }
+
+                var isValid = true;
+                if ($( "#name" ).val().trim() == '') {
+                    $( "#name" ).addClass("error");
+                    isValid = false;
+                } else {
+                    $( "#name" ).removeClass("error");
+                }
+
+                var cellNo = $( "#cellNumber" ).val().trim();                
+                if (cellNo == '') {
+                    $( "#cellNumber" ).addClass("error");
+                    isValid = false;
+                } else if(!cellNo.match(/^\d{10}$/)) {
+                    $( "#cellNumber" ).addClass("error");
+                    alert("Please enter valid mobile number");
+                    isValid = false;
+                } else {
+                    $( "#cellNumber" ).removeClass("error");
+                }
+
+                var email = $("#email").val().trim();
+                if (email == '') {
+                    $("#email").addClass("error");
+                    isValid = false;
+                } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                    $("#email").addClass("error");
+                    alert("Please enter valid email address");
+                    isValid = false;
+                    return;
+                } else {
+                    $("#email").removeClass("error");
+                }
+
+                if (!isValid) {
+                    alert('You must enter your contact details');
+                }
+
+                return hasAnyItem && isValid;
             }
 
             var el = this;
@@ -206,14 +249,15 @@ THE SOFTWARE.*/
                 window.open('data:application/json;filename=exportData;' + base64data);*/
             }else if(options.type == 'pdf'){
                 if (!isOrderFormValid()) {
-                    alert('You must order atleast one product');
                     return;
                 }
+
+
                 var jsonExportArray = toJson(el);
 
                 var doc = new jsPDF('p', 'pt');
                 doc.autoTable(jsonExportArray.header, jsonExportArray.data);
-                doc.save(options.filename);
+                doc.save("s2kphyro_order_" + Date.now() +".pdf");
 
             }
             return this;
