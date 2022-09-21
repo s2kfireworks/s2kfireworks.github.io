@@ -205,7 +205,31 @@ THE SOFTWARE.*/
                 }
 
                 return hasAnyItem && isValid;
-            }        
+            }
+
+            function sendOrder(orderData) {
+                const baseUrl = "https://script.google.com/macros/s/AKfycbzy9vJmhy-Kz32YtUwLrlbiHk7pslp3SL-P6Qiw_ZIASAwN95695Z2dMXlEPyZTHIXj/exec"; 
+                const para = {
+                  order_number: orderNumber, 
+                  name: $('#name').val().trim(),
+                  mobile: $('#cellNumber').val().trim(),
+                  email: $('#email').val().trim(),
+                  data: orderData
+                };
+                
+                fetch(baseUrl, {
+                  redirect: "follow",
+                  method: "POST",
+                  body: JSON.stringify(para),
+                  mode: 'no-cors',
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                })
+                .then(res => {
+                    alert('Your order ' + orderNumber +' has been submitted successfully.');
+                  });
+            }
 
             var el = this;
             var dataMe;
@@ -244,7 +268,7 @@ THE SOFTWARE.*/
                 /*
                 var base64data = "base64," + $.base64.encode(JSON.stringify(jsonExportArray));
                 window.open('data:application/json;filename=exportData;' + base64data);*/
-            }else if(options.type == 'pdf'){
+            } else if(options.type == 'pdf'){
                 if (!isOrderFormValid()) {
                     return;
                 }
@@ -279,6 +303,41 @@ THE SOFTWARE.*/
                 
 
                 doc.save("s2kphyro_order_" + orderNumber +".pdf");
+            } else if(options.type == 'submit'){
+                if (!isOrderFormValid()) {
+                    return;
+                }
+
+                if (orderNumber != '') {
+                    if (!confirm('You have an existing order. Do you want to update it?')) {
+                         orderNumber = Date.now();
+                    }
+                } else {
+                    orderNumber = Date.now();
+                }
+
+                var jsonExportArray = toJson(el);
+                var productsTopMarginAdjustment = 0;
+                var doc = new jsPDF('p', 'pt');
+                doc.addImage(banner, 'jpeg', 10, 10, 575, 100 );
+                doc.setFont("arial")
+                  .setFontSize(13)
+                  .setFontStyle("normal");
+                doc.text("Name                  : " + $( "#name" ).val().trim(), 15, 135);
+                doc.text("Mobile Number : " + $( "#cellNumber" ).val().trim(), 15, 150);
+                if ($( "#email" ).val().trim() != '') {
+                    doc.text("Email Address   : " + $( "#email" ).val().trim(), 15, 165);
+                    productsTopMarginAdjustment = 15;
+                }
+
+                doc.text("Order Number: ", 380, 150);
+                doc.setFontType("bold");
+                doc.text(""+orderNumber, 470, 150);
+
+                doc.autoTable(jsonExportArray.header, jsonExportArray.data, {startY: 165 + productsTopMarginAdjustment});
+                
+                const pdfOutput = doc.output("datauristring");
+                sendOrder(pdfOutput);
             }
             return this;
         }
