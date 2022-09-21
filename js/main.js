@@ -232,7 +232,6 @@ $(window).on('load', function() {
 	function updateTotal() {
 		var orderTotal = 0;
 		$( ".item-total" ).each(function( index ) {
-		  console.log( index + ": " + $( this ).text() );
 		  var itemTotal = $( this ).text();
 		  if(itemTotal != '' && !isNaN(itemTotal)) {
 		  	orderTotal = orderTotal + eval(itemTotal);
