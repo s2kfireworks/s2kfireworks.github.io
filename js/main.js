@@ -1,6 +1,7 @@
 //@ Firework JS 
 
 'use strict';
+var orderNumber = '';
 $(window).on('load', function() { 
 	/*------------------
 		Preloder
@@ -31,7 +32,61 @@ $(window).on('load', function() {
 	});
 });
 
+$(document).ready(function() {
+	const baseUrl = "https://script.google.com/macros/s/AKfycbyUFUzskzjec-Ta3Ag-lNyS14yAjMG3_CmbPH7srOLRtu6NR7so03Tx-z3YYUIIXjWDFQ/exec"; 
+	const para = {
+	  spreadsheetId: "1KwEnyjdiTlP5EQoq5utfbvrTSXh2WeTvAV3g090Xo-0", 
+	  sheetName: "Sheet1" 
+	};
+	const q = new URLSearchParams(para);
+	const url = baseUrl + "?" + q;
+	var body_row = [];
+	fetch(url)
+	  .then(res => res.json())
+	  .then(res => {
+	    const values = res.values;
+	    // console.log(values);
 
+	    
+	    $.each(res.values, function(index, cols) {
+	    	if (index > 0) {
+			    if (body_row[index-1] === undefined) {
+			      body_row[index-1] = $('<tr class="' + (index%2==0?'even':'odd') + '"/>');
+			    }
+			    var isPrdGroup = false;
+			    if (cols[1].trim() != '') { // don't show if product name is empty
+				    $.each(cols, function(colnum, val) {
+				    	if (colnum == 0 && val == '') {
+				    		isPrdGroup = true;
+				    		body_row[index-1].append('<td colspan="1"></td>');
+				    		body_row[index-1].addClass('group-header');
+				    		body_row[index-1].removeClass("even odd");
+				    	} 
+				    	if (isPrdGroup && colnum == 1) {
+				    		body_row[index-1].append('<td colspan="7">' + val + '</td>');
+				    	}
+
+				    	if (!isPrdGroup) {
+					    	if (colnum <= 3) {
+					    		body_row[index-1].append('<td>' + val + '</td>');
+					    	} else if (colnum == 4) {
+					    		body_row[index-1].append('<td class="rightAlign">' + val + '</td>');
+					    	} else if (colnum == 5) {
+					    		body_row[index-1].append('<td class="rightAlign" id="unit_price">' + val + '</td>');
+					     		body_row[index-1].append('<td class="quantity">' + 
+					    			'<div class="col-lg-4"><div class="number" id="number"> ' +
+					    			'<span class="minus">-</span> <input class="qty_id" type="text" value="0"> ' +
+					    			'<span class="plus">+</span></div></div></td>');
+					     		body_row[index-1].append('<td class="rightAlign"><span class="item-total" id="item_total"></span></td>');
+					    	}
+					    }
+				    });
+				}
+			}
+		  });
+	    $('#fmm_table_body').append(body_row);
+	  });
+});
 
 (function($){
 	/*------------------
@@ -53,9 +108,6 @@ $(window).on('load', function() {
 		}
 		event.preventDefault();
 	});
-
-
-
 
 
 	/*------------------
