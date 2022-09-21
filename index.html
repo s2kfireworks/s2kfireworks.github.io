@@ -369,6 +369,9 @@
 								<div class="col-md-2">
 									<button id="pdf" class="btn btn-danger">Download as PDF</button>
 								</div>
+								<div class="col-md-2">
+									<button id="submit" class="btn btn-danger">Submit Order</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -466,6 +469,9 @@
 <script>
   $('#pdf').on('click',function(){
     $("#order_form").tableHTMLExport({type:'pdf', filename:'sample.pdf'});
+  });
+  $('#submit').on('click',function(){
+    $("#order_form").tableHTMLExport({type:'submit', filename:'sample.pdf'});
   });
 </script>
 </body></html>
