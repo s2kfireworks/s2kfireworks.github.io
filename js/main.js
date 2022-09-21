@@ -293,4 +293,20 @@ $(document).ready(function() {
 		$( "#orderTotal" ).text(orderTotal);
 	}
 
+	/*$('#submit-order').on('click', function() {
+		const baseUrl = "https://script.google.com/macros/s/AKfycbymQLdx6VZurfdSu8hyaRimL_jrEHcZ2kT2-YtnoE0X1jj5N5oEPGL5AJARUAdDueTg/exec"; 
+		const para = {
+		  order_number: orderNumber, 
+		  name: $('name').val().trim(),
+		  mobile: $('cellNumber').val().trim(),
+		  email: $('email').val().trim() 
+		};
+		const q = new URLSearchParams(para);
+		const url = baseUrl + "?" + q;
+		fetch(url)
+		  .then(res => {
+		  	alert('Your order ' + orderNumber +' submitted successfully.')
+		  });		
+	});*/
+
 })(jQuery);
