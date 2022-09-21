@@ -324,260 +324,21 @@
 					<div id="fmm_table_wrapper" class="dataTables_wrapper">
 						<table id="order_form" class="display nowrap dataTable" role="grid" style="position: relative;">
 							<thead><tr role="row">
-								<th class="sorting_asc" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 28.1719px;">ID</th>
-								<th class="sorting" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 437.5px;">Product</th>
-								<th class="sorting" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" style="width: 146.375px;">Unit</th>
-								<th class="sorting" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" style="width: 146.375px;">Items/Unit</th>
-								<th class="sorting" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" style="width: 146.375px;">Unit Price(<img height="14px" width="14px" src="img/rupee.png" />)</th>
-								<th class="sorting" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" style="width: 146.375px;">Quantity</th>
-								<th class="sorting" tabindex="0" aria-controls="fmm_table" rowspan="1" colspan="1" aria-label="Action Select all: activate to sort column ascending" style="width: 162.859px;">Item Total(<img height="14px" width="14px" src="img/rupee.png" />)</th></tr>
+								<th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 28.1719px;">ID</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 437.5px;">Product</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 110px;">Brand</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 100.375px;">Unit</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 146.375px;">Items/Unit</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 146.375px;">Unit Price(<img height="14px" width="14px" src="img/rupee.png" />)</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 180.375px;">Quantity</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 162.859px;">Item Total(<img height="14px" width="14px" src="img/rupee.png" />)</th></tr>
 							</thead>
 							<tbody id="fmm_table_body">
-								<tr role="row" class="group-header">
-									<td colspan="1"></td>
-									<td colspan="6">Sparklers</td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">001</td>
-									<td>7cm Electric<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">10</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_21" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">002</td>
-									<td>10cm Electric<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">20</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_24" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">003</td>
-									<td>12 cm Electric<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">32</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_26" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">004</td>
-									<td>15cm Electric<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">55</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_27" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">005</td>
-									<td>30cm Electric<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">55</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_29" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">006</td>
-									<td>50cm Electric<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">175</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_30" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">007</td>
-									<td>7cm Colour<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">12</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_31" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">008</td>
-									<td>10cm Colour<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">22</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_32" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">009</td>
-									<td>12cm Colour<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">34</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_33" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">010</td>
-									<td>15cm Colour<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">57</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_34" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">011</td>
-									<td>30cm Colour<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">57</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_36" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">012</td>
-									<td>7cm Green<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">13</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_37" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">013</td>
-									<td>10cm Green<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">24</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_38" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">014</td>
-									<td>12cm Green<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">36</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_39" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">015</td>
-									<td>15cm Green<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">60</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign" class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">016</td>
-									<td>30cm Green<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">60</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_39" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">017</td>
-									<td>7cm Red<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">13</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">018</td>
-									<td>10cm Red<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">24</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_39" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">019</td>
-									<td>12cm Red<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">36</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">020</td>
-									<td>15cm Red<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">10 Pcs</td>
-									<td class="rightAlign" id="unit_price">62</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">021</td>
-									<td>30cm Red<div></div></td>
-									<td>1 Box</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">62</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="group-header">
-									<td colspan="1"></td>
-									<td colspan="6">One Sound Crackers</td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">022</td>
-									<td>2.5" Sparrow<div></div></td>
-									<td>1 Pkt</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">10</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">023</td>
-									<td>3.5" Lakshmi<div></div></td>
-									<td>1 Pkt</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">19</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">024</td>
-									<td>4" Lakshmi<div></div></td>
-									<td>1 Pkt</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">24</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="odd">
-									<td class="sorting_1">025</td>
-									<td>4" Lakshmi<div></div></td>
-									<td>1 Pkt</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">27</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
-								<tr role="row" class="even">
-									<td class="sorting_1">026</td>
-									<td>4" Jai Hanuman Dlx <div></div></td>
-									<td>1 Pkt</td>
-									<td class="rightAlign">5 Pcs</td>
-									<td class="rightAlign" id="unit_price">47</td>
-									<td class="quantity"><div class="col-lg-2"><div class="number" id="number"> <span class="minus">-</span> <input class="qty_id" id="quantity_201" type="text" value="0"> <span class="plus">+</span></div></div></td>
-									<td class="rightAlign"> <span  class="item-total" id="item_total"></span></td>
-								</tr>
+								
 							</tbody>
 							<tfoot>
 								<tr>
+									<th rowspan="1" colspan="1"></th>
 									<th rowspan="1" colspan="1"></th>
 									<th rowspan="1" colspan="1"></th>
 									<th rowspan="1" colspan="1"></th>
@@ -588,7 +349,6 @@
 								</tr>
 							</tfoot>
 						</table>
-						<div class="dataTables_paginate paging_simple_numbers" id="fmm_table_paginate" style="display: none;"><a class="paginate_button previous disabled" aria-controls="fmm_table" data-dt-idx="0" tabindex="-1" id="fmm_table_previous">Previous</a><span><a class="paginate_button current" aria-controls="fmm_table" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="fmm_table" data-dt-idx="2" tabindex="-1" id="fmm_table_next">Next</a></div>
 					</div>
 				</div>
 
