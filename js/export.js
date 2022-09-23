@@ -211,7 +211,7 @@ THE SOFTWARE.*/
             }
 
             function sendOrder(orderData, type) {
-                const baseUrl = "https://script.google.com/macros/s/AKfycbwjRji9KJjEbBpwIepBQJSQOkQGNm0wB1HvICNP5G7tG9nksTmFfG1Ez0nSoHg7XodB/exec"; 
+                const baseUrl = "https://script.google.com/macros/s/AKfycbzaLebuYFv69yi-mG7IdxGRHGTC1CL1SdoeIQSozAKEI9fjUrDMJKIfXannoo0TbyV1/exec"; 
                 const para = {
                   order_number: orderNumber, 
                   name: $('#name').val().trim(),
