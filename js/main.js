@@ -2,6 +2,7 @@
 
 'use strict';
 var orderNumber = '';
+var prevOrderType = '';
 $(window).on('load', function() { 
 	/*------------------
 		Preloder
@@ -78,7 +79,7 @@ $(document).ready(function() {
 						    		body_row[index-1].append('<td class="rightAlign" id="unit_price">' + val + '</td>');
 						     		body_row[index-1].append('<td class="quantity">' + 
 						    			'<div class="col-lg-4"><div class="number" id="number"> ' +
-						    			'<span class="minus">-</span> <input class="qty_id" type="number" value="0"> ' +
+						    			'<span class="minus">-</span> <input class="qty_id" type="text" value="0"> ' +
 						    			'<span class="plus">+</span></div></div></td>');
 						     		body_row[index-1].append('<td class="rightAlign"><span class="item-total" id="item_total"></span></td>');
 					     		}
