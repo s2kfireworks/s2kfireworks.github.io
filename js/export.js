@@ -46,7 +46,7 @@ THE SOFTWARE.*/
                 if(defaults.htmlContent){
                     content_data = data.html().trim();
                 }else{
-                    if (data.attr('type') == 'number') {
+                    if (data.attr('type') == 'text') {
                         content_data = data.val().trim();
                     } else {
                         content_data = data.text().trim();
@@ -210,13 +210,14 @@ THE SOFTWARE.*/
                 return hasAnyItem && isValid;
             }
 
-            function sendOrder(orderData) {
-                const baseUrl = "https://script.google.com/macros/s/AKfycbzciOrRd35RCeTYFrmtMpYNQCjBIYT6yr4N4gXqUUH0WN_KuZ2r79IiAO4wbu6Mdsan/exec"; 
+            function sendOrder(orderData, type) {
+                const baseUrl = "https://script.google.com/macros/s/AKfycbwjRji9KJjEbBpwIepBQJSQOkQGNm0wB1HvICNP5G7tG9nksTmFfG1Ez0nSoHg7XodB/exec"; 
                 const para = {
                   order_number: orderNumber, 
                   name: $('#name').val().trim(),
                   mobile: $('#cellNumber').val().trim(),
                   email: $('#email').val().trim(),
+                  isQuote: type,
                   data: orderData
                 };
                 
@@ -230,7 +231,9 @@ THE SOFTWARE.*/
                   },
                 })
                 .then(res => {
-                    alert('Your order ' + orderNumber +' has been submitted successfully and your copy will be downloaded.');
+                    if(!isQuote) {
+                        alert('Your order ' + orderNumber +' has been submitted successfully and your copy will be downloaded.');
+                    }
                   });
             }
 
@@ -271,18 +274,23 @@ THE SOFTWARE.*/
                 /*
                 var base64data = "base64," + $.base64.encode(JSON.stringify(jsonExportArray));
                 window.open('data:application/json;filename=exportData;' + base64data);*/
-            } else if(options.type == 'pdf'){
+            } else if(options.type == 'pdf' || options.type == 'submit') {
+                var isQuote = (options.type == 'pdf');
                 if (!isOrderFormValid()) {
                     return;
                 }
 
                 if (orderNumber != '') {
-                    if (!confirm('You have an existing order. Do you want to update it?')) {
-                         orderNumber = Date.now();
+                    if (prevOrderType == 'order' && !isQuote) {
+                        if (!confirm('You have an existing ' + (isQuote? 'quote' : 'order') +'. Do you want to update it?')) {
+                             orderNumber = Date.now();
+                        }
                     }
                 } else {
                     orderNumber = Date.now();
                 }
+
+                prevOrderType = (options.type == 'pdf')? "quote" : "order";
 
                 var jsonExportArray = toJson(el);
                 var productsTopMarginAdjustment = 0;
@@ -298,57 +306,19 @@ THE SOFTWARE.*/
                     productsTopMarginAdjustment = 15;
                 }
 
-                doc.text("Order Number: ", 300, 135);
+                var type = (isQuote)? "Quote" : "Order";
+                doc.text(type + " Number : ", 300, 135);
                 doc.setFontType("bold");
                 doc.text(""+orderNumber, 390, 135);
                 doc.setFontType("normal");
-                doc.text("Order Date       : ", 300, 150);
-                doc.setFontType("bold");
-                doc.text(new Date().toLocaleString(), 390, 150);
-
-                doc.autoTable(jsonExportArray.header, jsonExportArray.data, {startY: 165 + productsTopMarginAdjustment});
-                
-
-                doc.save("s2kpyro_order_" + orderNumber +".pdf");
-            } else if(options.type == 'submit'){
-                if (!isOrderFormValid()) {
-                    return;
-                }
-
-                if (orderNumber != '') {
-                    if (!confirm('You have an existing order. Do you want to update it?')) {
-                         orderNumber = Date.now();
-                    }
-                } else {
-                    orderNumber = Date.now();
-                }
-
-                var jsonExportArray = toJson(el);
-                var productsTopMarginAdjustment = 0;
-                var doc = new jsPDF('p', 'pt');
-                doc.addImage(banner, 'jpeg', 10, 10, 575, 100 );
-                doc.setFont("arial")
-                  .setFontSize(13)
-                  .setFontStyle("normal");
-                doc.text("Name                  : " + $( "#name" ).val().trim(), 15, 135);
-                doc.text("Mobile Number : " + $( "#cellNumber" ).val().trim(), 15, 150);
-                if ($( "#email" ).val().trim() != '') {
-                    doc.text("Email Address   : " + $( "#email" ).val().trim(), 15, 165);
-                    productsTopMarginAdjustment = 15;
-                }
-
-                doc.text("Order Number: ", 300, 135);
-                doc.setFontType("bold");
-                doc.text(""+orderNumber, 390, 135);
-                doc.setFontType("normal");
-                doc.text("Order Date       : ", 300, 150);
+                doc.text(type + " Date     : ", 300, 150);
                 doc.setFontType("bold");
                 doc.text(new Date().toLocaleString(), 390, 150);
 
                 doc.autoTable(jsonExportArray.header, jsonExportArray.data, {startY: 165 + productsTopMarginAdjustment});
                 
                 const pdfOutput = doc.output("datauristring");
-                sendOrder(pdfOutput);
+                sendOrder(pdfOutput, isQuote);
                 doc.save("s2kpyrotech_order_" + orderNumber +".pdf");
             }
             return this;
