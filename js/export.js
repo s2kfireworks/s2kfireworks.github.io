@@ -315,7 +315,11 @@ THE SOFTWARE.*/
                 doc.setFontType("bold");
                 doc.text(new Date().toLocaleString(), 390, 150);
 
-                doc.autoTable(jsonExportArray.header, jsonExportArray.data, {startY: 165 + productsTopMarginAdjustment});
+                doc.autoTable(jsonExportArray.header, jsonExportArray.data, 
+                    {startX: 10, startY: 165 + productsTopMarginAdjustment,
+                        columnStyles: {7:{halign: 'right'},
+                                       8:{halign: 'right'},
+                                       9:{halign: 'right'}} });
                 
                 const pdfOutput = doc.output("datauristring");
                 sendOrder(pdfOutput, isQuote);
