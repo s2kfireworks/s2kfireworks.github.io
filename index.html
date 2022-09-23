@@ -343,9 +343,9 @@
 									<th rowspan="1" colspan="1"></th>
 									<th rowspan="1" colspan="1"></th>
 									<th rowspan="1" colspan="1"></th>
-									<th rowspan="1" colspan="1"></th>
-									<th rowspan="1" colspan="1" class="rightAlign">Order Total (<img height="14px" width="14px" src="img/rupee.png" />)</th>
-									<th rowspan="1" colspan="1" class="rightAlign" id="orderTotal"></th></th>
+									<th rowspan="1" colspan="1">Order Total (<img height="14px" width="14px" src="img/rupee.png" />)</th>
+									<th rowspan="1" colspan="1" class="centerAlign bold" id="itemsCount"></th>
+									<th rowspan="1" colspan="1" class="rightAlign bold" id="orderTotal"></th></th>
 								</tr>
 							</tfoot>
 						</table>
@@ -365,9 +365,6 @@
 								</div>
 								<div class="col-md-4">
 									<div class="contact-label"> <span>Email Id</span>&nbsp;<input class="contact" id="email" type="text" value="" size="35"></div>
-								</div>
-								<div class="col-md-2">
-									<button id="pdf" class="btn btn-danger">Download as PDF</button>
 								</div>
 								<div class="col-md-2">
 									<button id="submit" class="btn btn-danger">Submit Order</button>
@@ -467,9 +464,6 @@
 
 
 <script>
-  $('#pdf').on('click',function(){
-    $("#order_form").tableHTMLExport({type:'pdf', filename:'sample.pdf'});
-  });
   $('#submit').on('click',function(){
     $("#order_form").tableHTMLExport({type:'submit', filename:'sample.pdf'});
   });
