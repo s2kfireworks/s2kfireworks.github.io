@@ -63,7 +63,7 @@ $(document).ready(function() {
 				    		body_row[index-1].removeClass("even odd");
 				    	} 
 				    	if (isPrdGroup && colnum == 1) {
-				    		body_row[index-1].append('<td colspan="7">' + val + '</td>');
+				    		body_row[index-1].append('<td colspan="7" class="bold">' + val + '</td>');
 				    	}
 
 				    	if (!isPrdGroup) {
@@ -72,12 +72,16 @@ $(document).ready(function() {
 					    	} else if (colnum == 4) {
 					    		body_row[index-1].append('<td class="rightAlign">' + val + '</td>');
 					    	} else if (colnum == 5) {
-					    		body_row[index-1].append('<td class="rightAlign" id="unit_price">' + val + '</td>');
-					     		body_row[index-1].append('<td class="quantity">' + 
-					    			'<div class="col-lg-4"><div class="number" id="number"> ' +
-					    			'<span class="minus">-</span> <input class="qty_id" type="text" value="0"> ' +
-					    			'<span class="plus">+</span></div></div></td>');
-					     		body_row[index-1].append('<td class="rightAlign"><span class="item-total" id="item_total"></span></td>');
+					    		if (val == '') {
+					    			body_row[index-1].append('<td></td><td></td><td></td>');
+					    		} else {
+						    		body_row[index-1].append('<td class="rightAlign" id="unit_price">' + val + '</td>');
+						     		body_row[index-1].append('<td class="quantity">' + 
+						    			'<div class="col-lg-4"><div class="number" id="number"> ' +
+						    			'<span class="minus">-</span> <input class="qty_id" type="number" value="0"> ' +
+						    			'<span class="plus">+</span></div></div></td>');
+						     		body_row[index-1].append('<td class="rightAlign"><span class="item-total" id="item_total"></span></td>');
+					     		}
 					    	}
 					    }
 				    });
@@ -260,29 +264,46 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$('#order_form').on('keypress','input.qty_id',function(e) {
+		if (!isNumber(e)) {
+			e.preventDefault();
+			return false;
+		}
+		return true;
+	});
+
+	$('#order_form').on('change','input.qty_id',function(e) {
+		calcTotal($(this));
+		return!1;
+	});
+
 	$('#order_form').on('click','span.minus',function(e){
 		var $input=$(this).parent().find('input');
 		var count=parseInt($input.val())-1;
 		count=count<0?0:count;
 		$input.val(count);
 		$input.change();
-		var unitPrice = $(this).parent().parent().parent().parent().find('#unit_price').text();
-		$(this).parent().parent().parent().parent().find('#item_total').text(eval($input.val()*unitPrice));
-		updateTotal();
+		calcTotal($(this));
 		return!1;
 	});
 	$('#order_form').on('click','span.plus',function(e){
 		var $input=$(this).parent().find('input');
 		$input.val(parseInt($input.val())+1);
 		$input.change();
-		var unitPrice = $(this).parent().parent().parent().parent().find('#unit_price').text();
-		$(this).parent().parent().parent().parent().find('#item_total').text(eval($input.val()*unitPrice));
-		updateTotal();
+		calcTotal($(this));
 		return!1;
 	});
 
+	function calcTotal(element) {
+		var $input = element.parent().find('input');
+		var unitPrice = element.parent().parent().parent().parent().find('#unit_price').text();
+		element.parent().parent().parent().parent().find('#item_total').text(eval($input.val()*unitPrice));
+		updateTotal();
+	}
+
 	function updateTotal() {
 		var orderTotal = 0;
+		var itemsCount = 0;
 		$( ".item-total" ).each(function( index ) {
 		  var itemTotal = $( this ).text();
 		  if(itemTotal != '' && !isNaN(itemTotal)) {
@@ -290,23 +311,19 @@ $(document).ready(function() {
 		  }
 		});
 
+		$( ".qty_id" ).each(function( index ) {
+		  itemsCount += eval($( this ).val());
+		});
+
+		$( "#itemsCount" ).text(itemsCount);
 		$( "#orderTotal" ).text(orderTotal);
 	}
 
-	/*$('#submit-order').on('click', function() {
-		const baseUrl = "https://script.google.com/macros/s/AKfycbymQLdx6VZurfdSu8hyaRimL_jrEHcZ2kT2-YtnoE0X1jj5N5oEPGL5AJARUAdDueTg/exec"; 
-		const para = {
-		  order_number: orderNumber, 
-		  name: $('name').val().trim(),
-		  mobile: $('cellNumber').val().trim(),
-		  email: $('email').val().trim() 
-		};
-		const q = new URLSearchParams(para);
-		const url = baseUrl + "?" + q;
-		fetch(url)
-		  .then(res => {
-		  	alert('Your order ' + orderNumber +' submitted successfully.')
-		  });		
-	});*/
-
+	function isNumber(event) {
+		var keyCode = event.which? event.which : event.keyCode;
+		if (keyCode > 31 && (keyCode < 48 || keyCode > 57)) {
+			return false;
+		}
+		return true;
+	}
 })(jQuery);
