@@ -46,7 +46,7 @@ THE SOFTWARE.*/
                 if(defaults.htmlContent){
                     content_data = data.html().trim();
                 }else{
-                    if (data.attr('type') == 'text') {
+                    if (data.attr('type') == 'number') {
                         content_data = data.val().trim();
                     } else {
                         content_data = data.text().trim();
@@ -78,7 +78,7 @@ THE SOFTWARE.*/
                 $(el).find('thead').find('tr').not(options.ignoreRows).each(function() {
                     var tdData ="";
                     var jsonArrayTd = [];
-
+                    jsonArrayTd.push("S.No");
                     $(this).find('th').not(options.ignoreColumns).each(function(index,data) {
                         if ($(this).css('display') != 'none'){
                             jsonArrayTd.push(parseString($(this)));
@@ -89,12 +89,15 @@ THE SOFTWARE.*/
                 });
 
                 var jsonArray = [];
+                var sno = 0;
                 $(el).find('tbody').find('tr').not(options.ignoreRows).each(function() {
                     var tdData ="";
                     var jsonArrayTd = [];
 
                     var qty = $(this).find( ".qty_id" ).val();
                     if (qty != '' && qty > 0) {
+                        sno += 1;
+                        jsonArrayTd.push(sno);
                         $(this).find('td').not(options.ignoreColumns).each(function(index,data) {
                             if ($(this).css('display') != 'none'){
                                 if ($(this).hasClass('quantity')) {
@@ -111,7 +114,7 @@ THE SOFTWARE.*/
                 $(el).find('tfoot').find('tr').not(options.ignoreRows).each(function() {
                     var tdData ="";
                     var jsonArrayTd = [];
-
+                    jsonArrayTd.push("");
                     $(this).find('th').not(options.ignoreColumns).each(function(index,data) {
                         if ($(this).css('display') != 'none'){
                             jsonArrayTd.push(parseString($(this)));
@@ -208,7 +211,7 @@ THE SOFTWARE.*/
             }
 
             function sendOrder(orderData) {
-                const baseUrl = "https://script.google.com/macros/s/AKfycbzy9vJmhy-Kz32YtUwLrlbiHk7pslp3SL-P6Qiw_ZIASAwN95695Z2dMXlEPyZTHIXj/exec"; 
+                const baseUrl = "https://script.google.com/macros/s/AKfycbzciOrRd35RCeTYFrmtMpYNQCjBIYT6yr4N4gXqUUH0WN_KuZ2r79IiAO4wbu6Mdsan/exec"; 
                 const para = {
                   order_number: orderNumber, 
                   name: $('#name').val().trim(),
@@ -227,7 +230,7 @@ THE SOFTWARE.*/
                   },
                 })
                 .then(res => {
-                    alert('Your order ' + orderNumber +' has been submitted successfully.');
+                    alert('Your order ' + orderNumber +' has been submitted successfully and your copy will be downloaded.');
                   });
             }
 
@@ -288,21 +291,25 @@ THE SOFTWARE.*/
                 doc.setFont("arial")
                   .setFontSize(13)
                   .setFontStyle("normal");
-                doc.text("Name                  : " + $( "#name" ).val().trim(), 15, 135);
+                doc.text("Name                 : " + $( "#name" ).val().trim(), 15, 135);
                 doc.text("Mobile Number : " + $( "#cellNumber" ).val().trim(), 15, 150);
                 if ($( "#email" ).val().trim() != '') {
                     doc.text("Email Address   : " + $( "#email" ).val().trim(), 15, 165);
                     productsTopMarginAdjustment = 15;
                 }
 
-                doc.text("Order Number: ", 380, 150);
+                doc.text("Order Number: ", 300, 135);
                 doc.setFontType("bold");
-                doc.text(""+orderNumber, 470, 150);
+                doc.text(""+orderNumber, 390, 135);
+                doc.setFontType("normal");
+                doc.text("Order Date       : ", 300, 150);
+                doc.setFontType("bold");
+                doc.text(new Date().toLocaleString(), 390, 150);
 
                 doc.autoTable(jsonExportArray.header, jsonExportArray.data, {startY: 165 + productsTopMarginAdjustment});
                 
 
-                doc.save("s2kphyro_order_" + orderNumber +".pdf");
+                doc.save("s2kpyro_order_" + orderNumber +".pdf");
             } else if(options.type == 'submit'){
                 if (!isOrderFormValid()) {
                     return;
@@ -338,6 +345,7 @@ THE SOFTWARE.*/
                 
                 const pdfOutput = doc.output("datauristring");
                 sendOrder(pdfOutput);
+                doc.save("s2kpyrotech_order_" + orderNumber +".pdf");
             }
             return this;
         }
