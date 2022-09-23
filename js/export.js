@@ -337,9 +337,13 @@ THE SOFTWARE.*/
                     productsTopMarginAdjustment = 15;
                 }
 
-                doc.text("Order Number: ", 380, 150);
+                doc.text("Order Number: ", 300, 135);
                 doc.setFontType("bold");
-                doc.text(""+orderNumber, 470, 150);
+                doc.text(""+orderNumber, 390, 135);
+                doc.setFontType("normal");
+                doc.text("Order Date       : ", 300, 150);
+                doc.setFontType("bold");
+                doc.text(new Date().toLocaleString(), 390, 150);
 
                 doc.autoTable(jsonExportArray.header, jsonExportArray.data, {startY: 165 + productsTopMarginAdjustment});
                 
