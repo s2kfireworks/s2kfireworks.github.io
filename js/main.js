@@ -265,6 +265,19 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$('#clear-order').click(function(e){
+		prevOrderType = '';
+		orderNumber = '';
+		$( ".qty_id" ).each(function( index ) {
+		  $( this ).val(0);
+		  $( this ).change();
+		});
+		$('#name').val('');
+		$('#cellNumber').val('');
+		$('#email').val('');
+		return!1;
+	});
+
 	$('#order_form').on('keypress','input.qty_id',function(e) {
 		if (!isNumber(e)) {
 			e.preventDefault();
