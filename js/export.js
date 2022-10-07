@@ -227,6 +227,8 @@ THE SOFTWARE.*/
             }
 
             function submitOrder(orderSummary, pdfDoc, type) {
+                $(".loader").show(); 
+                $("#preloder").show();
                 const getOrderIdParams = {
                     action: 'newid',
                     entity: 'orders'
@@ -286,12 +288,18 @@ THE SOFTWARE.*/
                             }
 
                             pdfDoc.save("s2kpyrotech_order_" + orderNumber +".pdf");
+                            $(".loader").fadeOut(); 
+                            $("#preloder").delay(400).fadeOut("slow");
                         }).catch(function(err) {
                             alert("We received your order " + orderNumber + " and you will receive a confirmation later.");
+                            $(".loader").fadeOut(); 
+                            $("#preloder").delay(400).fadeOut("slow");
                         });
                     })
                     .catch(function(err) {
                         alert("Sorry we are unable to process your order currently. Please try again later.");
+                        $(".loader").fadeOut(); 
+                        $("#preloder").delay(400).fadeOut("slow");
                     });
                 });
             }
