@@ -2,8 +2,6 @@
 
 var orderNumber = '';
 var prevOrderType = '';
-var orderMap = new Map();
-var customerMap = new Map();
 const orderServiceUrl = "https://script.google.com/macros/s/AKfycbxzMdiws8zBaK7lEgujD1ufFxyWjriWfjVW5SrIUC_lABncpag7F5KptFw9zsEu2HRF/exec";
 const orderConfUrl = "https://script.google.com/macros/s/AKfycbzOwXlcdjS-zU1qSl5p7Fx1yhYDaow2_mtg5z8ZkicU7E8CiWtaJ5CizJyAnpgo4Qdu/exec"; 
 
