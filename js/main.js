@@ -1,8 +1,12 @@
 //@ Firework JS 
 
-'use strict';
 var orderNumber = '';
 var prevOrderType = '';
+var orderMap = new Map();
+var customerMap = new Map();
+const orderServiceUrl = "https://script.google.com/macros/s/AKfycbxzMdiws8zBaK7lEgujD1ufFxyWjriWfjVW5SrIUC_lABncpag7F5KptFw9zsEu2HRF/exec";
+const orderConfUrl = "https://script.google.com/macros/s/AKfycbzOwXlcdjS-zU1qSl5p7Fx1yhYDaow2_mtg5z8ZkicU7E8CiWtaJ5CizJyAnpgo4Qdu/exec"; 
+
 $(window).on('load', function() { 
 	/*------------------
 		Preloder
@@ -46,9 +50,7 @@ $(document).ready(function() {
 	  .then(res => res.json())
 	  .then(res => {
 	    const values = res.values;
-	    // console.log(values);
 
-	    
 	    $.each(res.values, function(index, cols) {
 	    	if (index > 0) {
 			    if (body_row[index-1] === undefined) {
@@ -89,32 +91,12 @@ $(document).ready(function() {
 				}
 			}
 		  });
-	    $('#fmm_table_body').append(body_row);
+	    $('#order_form_table_body').append(body_row);
 	  });
 });
 
+
 (function($){
-	/*------------------
-		Navigation
-	--------------------*/
-	$('.nav-switch').on('click', function(event) {
-		$('.mainmenu').toggleClass('active');
-		$(this).toggleClass('active');
-		event.preventDefault();
-	});
-	$('.menu-list li a').on('click', function(event) {
-		var anchor = $(this);
-		$('html, body').stop().animate({
-			scrollTop: $(anchor.attr('href')).offset().top - 0
-		}, 1000);
-		if ($(window).width() < 768) {
-			$('.nav-switch').removeClass('active');
-			$('.mainmenu').removeClass('active');
-		}
-		event.preventDefault();
-	});
-
-
 	/*------------------
 		BG Parallax
 	--------------------*/
@@ -213,13 +195,10 @@ $(document).ready(function() {
 		});
 	}
 
-
-
 	/*------------------
 		WOW JS
 	--------------------*/
 	new WOW().init();
-
 
 	/*------------------
 		Contact Form

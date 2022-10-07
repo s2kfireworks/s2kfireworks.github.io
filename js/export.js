@@ -111,6 +111,11 @@ THE SOFTWARE.*/
                     }
                 });
 
+                var orderSummary = {
+                    totalItems: 0,
+                    totalAmount: 0
+                };
+
                 $(el).find('tfoot').find('tr').not(options.ignoreRows).each(function() {
                     var tdData ="";
                     var jsonArrayTd = [];
@@ -119,12 +124,23 @@ THE SOFTWARE.*/
                         if ($(this).css('display') != 'none'){
                             jsonArrayTd.push(parseString($(this)));
                         }
+
+                        if ($(this).attr('id') == 'itemsCount') {
+                            orderSummary.totalItems = $(this).text().trim();
+                        } else if ($(this).attr('id') == 'orderTotal') {
+                            orderSummary.totalAmount = $(this).text().trim();
+                        }
                     });
                     jsonArray.push(jsonArrayTd);
-
                 });
 
-                return {header:jsonHeaderArray[0],data:jsonArray};
+                var customerInfo = {
+                    name: $( "#name" ).val().trim(),
+                    mobile: $( "#cellNumber" ).val().trim(),
+                    email: $( "#email" ).val().trim()
+                }
+
+                return {header: jsonHeaderArray[0], data: jsonArray, summary: orderSummary, customer: customerInfo};
             }
 
 
@@ -210,31 +226,74 @@ THE SOFTWARE.*/
                 return hasAnyItem && isValid;
             }
 
-            function sendOrder(orderData, type) {
-                const baseUrl = "https://script.google.com/macros/s/AKfycbz8hi8It4YhGTHZMvL9f5oCM1CK5WxBRQCprXEiUxSWbDe83d-yWdpsWMRWjZ350le3/exec"; 
-                const para = {
-                  order_number: orderNumber, 
-                  name: $('#name').val().trim(),
-                  mobile: $('#cellNumber').val().trim(),
-                  email: $('#email').val().trim(),
-                  isQuote: type,
-                  data: orderData
+            function submitOrder(orderSummary, pdfDoc, type) {
+                const getOrderIdParams = {
+                    action: 'newid',
+                    entity: 'orders'
+                }
+                const submitOrderParams = {
+                    action: 'create'
+                }
+                const q = new URLSearchParams(submitOrderParams);
+                const orderRequest = {
+                    totalItems: orderSummary.summary.totalItems,
+                    totalAmount: orderSummary.summary.totalAmount,
+                    type: type? "quote" : "order",
+                    details: JSON.stringify(orderSummary.data),
+                    customer: orderSummary.customer
                 };
-                
-                fetch(baseUrl, {
-                  redirect: "follow",
-                  method: "POST",
-                  body: JSON.stringify(para),
-                  mode: 'no-cors',
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                })
+
+                var notificationParams = {
+                  order_number: '', 
+                  name: orderSummary.customer.name,
+                  mobile:orderSummary.customer.mobile,
+                  email: orderSummary.customer.email,
+                  isQuote: type,
+                  data: ''
+                };
+
+                fetch(orderServiceUrl + "?" + (new URLSearchParams(getOrderIdParams)))
+                .then(res => res.json())
                 .then(res => {
-                    if(!isQuote) {
-                        alert('Your order ' + orderNumber +' has been submitted successfully and your copy will be downloaded.');
-                    }
-                  });
+                    console.log(res);
+                    orderRequest.id = res.id;
+                    fetch(orderServiceUrl + "?" + q, {
+                      method: "POST",
+                      body: JSON.stringify(orderRequest),
+                      mode: 'no-cors',
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    })
+                    .then(res => {
+                        orderNumber = orderRequest.id;                    
+                        pdfDoc.text("" + orderNumber, 390, 135); // set order number in the PDF
+                        notificationParams.order_number = orderNumber;
+                        notificationParams.data = doc.output("datauristring");
+
+                        fetch(orderConfUrl, {
+                          redirect: "follow",
+                          method: "POST",
+                          body: JSON.stringify(notificationParams),
+                          mode: 'no-cors',
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                        })
+                        .then(res => {
+                            if(!isQuote) {
+                                alert("Your order " + orderNumber + " has been submitted successfully and your copy will be downloaded.");
+                            }
+
+                            pdfDoc.save("s2kpyrotech_order_" + orderNumber +".pdf");
+                        }).catch(function(err) {
+                            alert("We received your order " + orderNumber + " and you will receive a confirmation later.");
+                        });
+                    })
+                    .catch(function(err) {
+                        alert("Sorry we are unable to process your order currently. Please try again later.");
+                    });
+                });
             }
 
             var el = this;
@@ -283,11 +342,11 @@ THE SOFTWARE.*/
                 if (orderNumber != '') {
                     if (prevOrderType == 'order' && !isQuote) {
                         if (!confirm('You have an existing ' + (isQuote? 'quote' : 'order') +'. Do you want to update it?')) {
-                             orderNumber = Date.now();
+                             // orderNumber = Date.now();
                         }
                     }
                 } else {
-                    orderNumber = Date.now();
+                    // orderNumber = Date.now();
                 }
 
                 prevOrderType = (options.type == 'pdf')? "quote" : "order";
@@ -299,17 +358,17 @@ THE SOFTWARE.*/
                 doc.setFont("arial")
                   .setFontSize(13)
                   .setFontStyle("normal");
-                doc.text("Name                 : " + $( "#name" ).val().trim(), 15, 135);
-                doc.text("Mobile Number : " + $( "#cellNumber" ).val().trim(), 15, 150);
-                if ($( "#email" ).val().trim() != '') {
-                    doc.text("Email Address   : " + $( "#email" ).val().trim(), 15, 165);
+                doc.text("Name                 : " + jsonExportArray.customer.name, 15, 135);
+                doc.text("Mobile Number : " + jsonExportArray.customer.mobile, 15, 150);
+                if (jsonExportArray.customer.email != '') {
+                    doc.text("Email Address   : " + jsonExportArray.customer.email, 15, 165);
                     productsTopMarginAdjustment = 15;
                 }
 
                 var type = (isQuote)? "Quote" : "Order";
                 doc.text(type + " Number : ", 300, 135);
                 doc.setFontType("bold");
-                doc.text(""+orderNumber, 390, 135);
+                doc.text("", 390, 135);
                 doc.setFontType("normal");
                 doc.text(type + " Date     : ", 300, 150);
                 doc.setFontType("bold");
@@ -317,13 +376,12 @@ THE SOFTWARE.*/
 
                 doc.autoTable(jsonExportArray.header, jsonExportArray.data, 
                     {startX: 10, startY: 165 + productsTopMarginAdjustment,
-                        columnStyles: {7:{halign: 'right'},
-                                       8:{halign: 'right'},
-                                       9:{halign: 'right'}} });
+                        columnStyles: {0:{halign: 'right'},
+                                       6:{halign: 'right'},
+                                       7:{halign: 'right'},
+                                       8:{halign: 'right'}} });
                 
-                const pdfOutput = doc.output("datauristring");
-                sendOrder(pdfOutput, isQuote);
-                doc.save("s2kpyrotech_order_" + orderNumber +".pdf");
+                submitOrder(jsonExportArray, doc, isQuote);
             }
             return this;
         }

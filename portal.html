@@ -1,0 +1,193 @@
+<html lang="en"><head><style>.gm-control-active>img{box-sizing:content-box;display:none;left:50%;pointer-events:none;position:absolute;top:50%;transform:translate(-50%,-50%)}.gm-control-active>img:nth-child(1){display:block}.gm-control-active:hover>img:nth-child(1),.gm-control-active:active>img:nth-child(1){display:none}.gm-control-active:hover>img:nth-child(2),.gm-control-active:active>img:nth-child(3){display:block}
+</style><link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans"><style>.gm-ui-hover-effect{opacity:.6}.gm-ui-hover-effect:hover{opacity:1} .f-20 {  font-size: 20px; }
+</style><style>.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px;box-sizing:border-box} .fa-whatsapp  {  color:#fff;   background:
+   linear-gradient(#25d366,#25d366) 14% 84%/16% 16% no-repeat,   radial-gradient(#25d366 60%,transparent 0);}
+</style><style>@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style>.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}
+</style><style>.gm-style img{max-width: none;}.gm-style {font: 400 11px Roboto, Arial, sans-serif; text-decoration: none;}</style>
+	<title>S2K Pyrotech</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="S2K Pyrotech">
+	<meta name="keywords" content="firework, onepage, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link href="img/s2klogo_icon.ico" rel="shortcut icon">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fa-all.css">
+	<link rel="stylesheet" href="css/sharp-solid.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/font-awesome-animation.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Preloder -->
+	<div id="preloder" style="display: none;">
+		<div class="loader" style="display: none;"></div>
+	</div>
+
+	<!--====== Top Section Start ======-->
+	<div class="top-element">
+		<!-- <div class="logo">
+			<img src="img/s2klogo-2-150.jpg"/>
+		</div> -->
+		<div class="container">			
+			<!-- Navigation Switch -->
+			<div class="nav-switch">
+				<span class="bar-one"></span>
+				<span class="bar-two"></span>
+				<span class="bar-three"></span>
+			</div>
+			<!-- Navigation Menu -->
+			<nav class="mainmenu">
+				<ul class="menu-list">
+					<li><a href="#orders">Orders</a></li>
+					<li><a href="#customers">Customers</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!--====== Top Section End ======-->
+
+	<section class="resume-section" id="orders">
+		<div class="container pb100 pt20">
+			<div class="section-title mb60">
+				<h2>Order List</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="fmm_table_wrapper" class="dataTables_wrapper">
+						<table id="orders_list" class="display nowrap dataTable" role="grid" style="position: relative;">
+							<thead><tr role="row">
+								<th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 150px;">Order Id</th>
+								<th class="sorting rightAlign" tabindex="0" rowspan="1" colspan="1" style="width: 110.5px;">Items</th>
+								<th class="sorting rightAlign" tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Amount (₹)</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Customer Id</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Order Type</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 200px;">Order Date</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 200px;">Action</th>
+							</thead>
+							<tbody id="order_list_table_body">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="resume-section" id="customers">
+		<div class="container pb100 pt20">
+			<div class="section-title mb60">
+				<h2>Customer List</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="fmm_table_wrapper" class="dataTables_wrapper">
+						<table id="customer_list" class="display nowrap dataTable" role="grid" style="position: relative;">
+							<thead><tr role="row">
+								<th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 150px;">ID</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 300.5px;">Name</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 110px;">Mobile</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 150.375px;">Email</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 300.375px;">Address</th>
+								<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 146.375px;">Order Number</th>
+							</thead>
+							<tbody id="customer_list_table_body">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<footer class="footer-section">
+		<div class="ft-top">
+			<div class="social-bottom wow fadeInDown" data-wow-delay="0.2s" style="visibility: hidden; animation-delay: 0.2s; animation-name: none;">
+				<a href="https://www.facebook.com/pg/S2K-Pyrotechnics-102112774993255/posts/?ref=page_internal"> <i class="fa fa-facebook"></i></a>
+				<a href="https://wa.me/917016139368"><i class="fa fa-whatsapp"></i></a>
+				<a href=""> <i class="fa fa-twitter"></i></a>
+				<a href="https://www.youtube.com/channel/UCRIiYpIBxxev48uZEe26K_Q?view_as=subscriber"> <i class="fa fa-youtube"></i></a>
+			</div>
+		</div>
+		<div class="container pt20 pb100">
+			<p>Copyright © 2019 | Developed By s2kpyro.com</p>
+		</div>
+	</footer>
+
+	<div class="modal fade" id="orderDetails" tabindex="-1" role="dialog" aria-labelledby="orderDetailsTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document" style="width:1100px">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="orderDetailsTitle">Order Details</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="row">
+					<div class="col-md-12">
+						<div class="service-item" style="padding:0 0 10 0;">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="contact-label"> <span>Customer Name: &nbsp;</span><span id="name"></span></div>
+								</div>
+								<div class="col-md-3">
+									<div class="contact-label"> <span>Mobile Number: &nbsp;</span><span id="mobile"></span></div>
+								</div>
+								<div class="col-md-5">
+									<div class="contact-label"> <span>Email Id: &nbsp;</span><span id="email"></span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	         <table id="order_details_form" class="display nowrap dataTable" role="grid" style="position: relative; margin-top:10px ;">
+					<thead><tr role="row">
+						<th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 28.1719px;">SNo.</th>
+						<th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 28.1719px;">ID</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 437.5px;">Product</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 110px;">Brand</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 100.375px;">Unit</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 146.375px;">Items/Unit</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 146.375px;">Unit Price(₹)</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 180.375px;">Quantity</th>
+						<th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 162.859px;">Item Total(₹)</th></tr>
+					</thead>
+					<tbody id="order_details_table_body">
+						
+					</tbody>
+				</table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!--====== Javascripts & Jquery ======-->	
+	
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery.parallax.js"></script>
+	<script src="js/jquery.simple-text-rotator.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/jquery.scrollUp.js"></script>
+	<script src="js/ordermgmt.js"></script>
+	<script src="js/nav.js"></script>
+	<a id="scrollUp" href="#top" style="display: none; position: fixed; z-index: 999;"><i class="fa fa-long-arrow-up"></i></a>
+
+</body></html>
