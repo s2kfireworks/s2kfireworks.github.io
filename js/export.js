@@ -257,7 +257,6 @@ THE SOFTWARE.*/
                 fetch(orderServiceUrl + "?" + (new URLSearchParams(getOrderIdParams)))
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
                     orderRequest.id = res.id;
                     fetch(orderServiceUrl + "?" + q, {
                       method: "POST",
