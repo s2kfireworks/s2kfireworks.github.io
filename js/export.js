@@ -234,7 +234,8 @@ THE SOFTWARE.*/
                     entity: 'orders'
                 }
                 const submitOrderParams = {
-                    action: 'create'
+                    action: 'create',
+                    entity: 'orders'
                 }
                 const q = new URLSearchParams(submitOrderParams);
                 const orderRequest = {
@@ -323,7 +324,6 @@ THE SOFTWARE.*/
                 }
 
                 download(options.filename,dataMe);
-
 
                 //var base64data = "base64," + $.base64.encode(tdData);
                 //window.open('data:application/'+defaults.type+';filename=exportData;' + base64data);
