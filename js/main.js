@@ -2,7 +2,7 @@
 
 var orderNumber = '';
 var prevOrderType = '';
-const orderServiceUrl = "https://script.google.com/macros/s/AKfycbyYSaORwV1ZWxYZ-_1FYf2My5OJr2T-rOafxPVPkbdySEnYoCZE_gpIO1s6DFDbgf4/exec";
+const orderServiceUrl = "https://script.google.com/macros/s/AKfycbyEEVCPEkxf3c2iRjU0TyLzpuF9aWjUo8krQU-Abic-nozkNW1h4marXGpHXAI8o_zm/exec";
 const orderConfUrl = "https://script.google.com/macros/s/AKfycbzOwXlcdjS-zU1qSl5p7Fx1yhYDaow2_mtg5z8ZkicU7E8CiWtaJ5CizJyAnpgo4Qdu/exec"; 
 
 $(window).on('load', function() { 
