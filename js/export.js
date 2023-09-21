@@ -260,6 +260,7 @@ THE SOFTWARE.*/
                 .then(res => {
                     orderRequest.id = res.id;
                     fetch(orderServiceUrl + "?" + q, {
+                      redirect: "follow",
                       method: "POST",
                       body: JSON.stringify(orderRequest),
                       mode: 'no-cors',
