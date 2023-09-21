@@ -280,7 +280,7 @@ THE SOFTWARE.*/
                           body: JSON.stringify(notificationParams),
                           mode: 'no-cors',
                           headers: {
-                            "Content-Type": "application/json",
+                            "Content-Type": "text/plain;charset=utf-8",
                           },
                         })
                         .then(res => {
